@@ -1,17 +1,25 @@
 <template>
     <my-header title="Vue mastery"></my-header>
     <div class="app__container">
+      <my-product :title="product"></my-product>
     </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import MyHeader from '@/components/MyHeader.vue';
+import MyProduct from '@/components/ui/MyProduct.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
     MyHeader,
+    MyProduct,
+  },
+  data() {
+    return {
+      product: 'Socks',
+    };
   },
 });
 </script>
