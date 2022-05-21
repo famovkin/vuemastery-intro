@@ -1,24 +1,30 @@
 <template>
-  <h1>Vue Mastery</h1>
+  <my-header title="Vue mastery"></my-header>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import MyHeader from '@/components/MyHeader.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
+    MyHeader,
   },
 });
 </script>
 
 <style lang="scss">
-#app {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 20px;
+}
+
+body {
+  min-width: 320px;
 }
 </style>
