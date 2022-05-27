@@ -24,13 +24,23 @@
         </p>
         <p class="product__description">{{ desc }}</p>
         <ul class="product__details">
-          <li class="product__details-item">50% cotton</li>
-          <li class="product__details-item">30% wool</li>
-          <li class="product__details-item">20% polyester</li>
+          <li
+            class="product__details-item"
+            v-for="detail in details"
+            :key="detail"
+          >
+            {{ detail }}
+          </li>
         </ul>
         <ul class="product__colors">
-          <li class="product__colors-item">green</li>
-          <li class="product__colors-item">blue</li>
+
+          <li
+            class="product__colors-item"
+            v-for="variant in variants"
+            :key="variant.id"
+          >
+            {{ variant.color }}
+          </li>
         </ul>
       </div>
       <my-button>Add to cart</my-button>
@@ -39,9 +49,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, PropType } from 'vue';
 
 import MyButton from '@/components/ui/MyButton.vue';
+import Variant from '@/types/Variant';
 
 export default defineComponent({
   components: {
@@ -65,6 +76,14 @@ export default defineComponent({
     },
     sale: {
       type: Boolean,
+    },
+    details: {
+      required: true,
+      type: Array as PropType<string[]>,
+    },
+    variants: {
+      required: true,
+      type: Array as PropType<Variant[]>,
     },
   },
 });
