@@ -12,6 +12,7 @@
     color: $white;
     background: $dark-blue;
     height: 60px;
+    max-width: 200px;
     padding: 0 20px;
     border-radius: 5px;
     font-size: 18px;

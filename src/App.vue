@@ -1,7 +1,13 @@
 <template>
     <my-header title="Vue mastery"></my-header>
     <div class="app__container">
-      <my-product :title="product"></my-product>
+      <my-product
+        :title="product"
+        :desc="description"
+        :image="imageFile"
+        :stock="inStock"
+        :sale="onSale"
+      />
     </div>
 </template>
 
@@ -19,6 +25,10 @@ export default defineComponent({
   data() {
     return {
       product: 'Socks',
+      description: 'This socks are made with premium cotton to keep your feet comfortable, while an arch band provides a supportive fit with less slippage.',
+      imageFile: 'socks_green.jpeg',
+      inStock: false,
+      onSale: false,
     };
   },
 });

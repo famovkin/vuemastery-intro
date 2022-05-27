@@ -1,10 +1,28 @@
 <template>
   <div class="product app__product">
-    <img class="product__image" src="@/assets/images/socks_blue.jpeg" alt="Image"/>
+    <img class="product__image" :src="require(`@/assets/images/${image}`)" :alt="title"/>
     <div class="product__information">
       <div class="product__content">
         <h2 class="product__title">{{ title }}</h2>
-        <p class="product__stock">In Stock</p>
+        <p
+          class="product__subtitle"
+          v-if="stock"
+        >
+          In Stock
+        </p>
+        <p
+          class="product__subtitle"
+          v-else
+        >
+          Out of Stock
+        </p>
+        <p
+          class="product__subtitle product__subtitle_type_sale"
+          v-if="sale"
+        >
+          On sale
+        </p>
+        <p class="product__description">{{ desc }}</p>
         <ul class="product__details">
           <li class="product__details-item">50% cotton</li>
           <li class="product__details-item">30% wool</li>
@@ -34,6 +52,20 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    desc: {
+      type: String,
+    },
+    image: {
+      type: String,
+      required: true,
+    },
+    stock: {
+      type: Boolean,
+      required: true,
+    },
+    sale: {
+      type: Boolean,
+    },
   },
 });
 </script>
@@ -52,9 +84,21 @@ export default defineComponent({
     font-size: 50px;
   }
 
-  &__stock {
+  &__subtitle {
     font-size: 22px;
     font-weight: 700;
+    margin-bottom: 5px;
+  }
+
+  &__subtitle_type_sale {
+    color: $red;
+  }
+
+  &__description {
+    max-width: 500px;
+    font-size: 15px;
+    font-style: italic;
+    margin-bottom: 10px;
   }
 
   &__details-item {
@@ -79,11 +123,6 @@ export default defineComponent({
   @media (max-width: 768px) {
     & {
       flex-direction: column;
-    }
-
-    &__information {
-      width: 100%;
-      flex-direction: row;
     }
 
     &__image {
