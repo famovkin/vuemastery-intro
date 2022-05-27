@@ -1,6 +1,11 @@
 <template>
   <div class="product app__product">
-    <img class="product__image" :src="require(`@/assets/images/${image}`)" :alt="title"/>
+    <img
+      class="product__image"
+      :class="{ 'product__image_type_disabled': !stock }"
+      :src="require(`@/assets/images/${image}`)"
+      :alt="title"
+    />
     <div class="product__information">
       <div class="product__content">
         <h2 class="product__title">{{ title }}</h2>
@@ -44,6 +49,7 @@
         </ul>
       </div>
       <my-button
+        :enabled="stock"
         @click="addToCart"
       >
         Add to cart
@@ -166,6 +172,10 @@ export default defineComponent({
     object-fit: cover;
     padding: 20px;
     border: 2px solid $gray;
+  }
+
+  &__image_type_disabled {
+    opacity: 50%;
   }
 
   @media (max-width: 768px) {

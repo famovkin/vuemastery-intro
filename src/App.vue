@@ -33,7 +33,7 @@ export default defineComponent({
       product: 'Socks',
       description: 'This socks are made with premium cotton to keep your feet comfortable, while an arch band provides a supportive fit with less slippage.',
       imageFile: 'socks_green.jpeg',
-      inStock: false,
+      inStock: true,
       onSale: false,
       details: ['50% cotton', '30% wool', '20% polyester'],
       variants: [
