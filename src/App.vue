@@ -1,6 +1,7 @@
 <template>
     <my-header title="Vue mastery"></my-header>
     <div class="app__container">
+      <div class="app__cart">Cart({{ cart }})</div>
       <my-product
         :title="product"
         :desc="description"
@@ -9,6 +10,8 @@
         :sale="onSale"
         :details="details"
         :variants="variants"
+        @add-to-cart="updateCart"
+        @update-image="updateImage"
       />
     </div>
 </template>
@@ -26,6 +29,7 @@ export default defineComponent({
   },
   data() {
     return {
+      cart: 0,
       product: 'Socks',
       description: 'This socks are made with premium cotton to keep your feet comfortable, while an arch band provides a supportive fit with less slippage.',
       imageFile: 'socks_green.jpeg',
@@ -33,10 +37,18 @@ export default defineComponent({
       onSale: false,
       details: ['50% cotton', '30% wool', '20% polyester'],
       variants: [
-        { id: 2234, color: 'green' },
-        { id: 2235, color: 'blue' },
+        { id: 2234, color: 'green', image: 'socks_green.jpeg' },
+        { id: 2235, color: 'blue', image: 'socks_blue.jpeg' },
       ],
     };
+  },
+  methods: {
+    updateCart(): void {
+      this.cart += 1;
+    },
+    updateImage(file: string): void {
+      this.imageFile = file;
+    },
   },
 });
 </script>
@@ -63,5 +75,18 @@ body {
   @media (max-width: 425px) {
     padding: 0px 10px;
   }
+}
+
+.app__cart {
+  border: 1px solid $gray;
+  background-color: $white;
+  text-align: center;
+  max-width: 100px;
+  padding: 10px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  -webkit-box-shadow: 2px 2px 15px rgb(0, 0, 0, 0.27);
+  -moz-box-shadow: 2px 2px 15px rgb(0, 0, 0, 0.27);
+  box-shadow: 2px 2px 15px rgb(0, 0, 0, 0.27);
 }
 </style>

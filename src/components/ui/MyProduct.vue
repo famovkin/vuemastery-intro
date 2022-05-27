@@ -33,17 +33,21 @@
           </li>
         </ul>
         <ul class="product__colors">
-
           <li
             class="product__colors-item"
             v-for="variant in variants"
             :key="variant.id"
-          >
-            {{ variant.color }}
-          </li>
+            :style="{ backgroundColor: variant.color }"
+            @mouseover="updateImage(variant.image)"
+            @focusin="updateImage(variant.image)"
+          />
         </ul>
       </div>
-      <my-button>Add to cart</my-button>
+      <my-button
+        @click="addToCart"
+      >
+        Add to cart
+      </my-button>
     </div>
   </div>
 </template>
@@ -86,6 +90,14 @@ export default defineComponent({
       type: Array as PropType<Variant[]>,
     },
   },
+  methods: {
+    updateImage(file: string): void {
+      this.$emit('update-image', file);
+    },
+    addToCart(): void {
+      this.$emit('add-to-cart');
+    },
+  },
 });
 </script>
 
@@ -120,8 +132,25 @@ export default defineComponent({
     margin-bottom: 10px;
   }
 
+  &__details {
+    margin-bottom: 10px;
+  }
+
   &__details-item {
     font-size: 18px;
+  }
+
+  &__colors {
+    display: flex;
+    gap: 5px;
+  }
+
+  &__colors-item {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: red;
+    border: 2px solid $gray;
   }
 
   &__information {
