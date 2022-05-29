@@ -40,10 +40,10 @@
         <ul class="product__colors">
           <li
             class="product__colors-item"
-            v-for="variant in variants"
+            v-for="(variant, index) in variants"
             :key="variant.id"
             :style="{ backgroundColor: variant.color }"
-            @mouseover="updateImage(variant.image)"
+            @mouseover="updateVariant(index)"
             @focusin="updateImage(variant.image)"
           />
         </ul>
@@ -97,8 +97,8 @@ export default defineComponent({
     },
   },
   methods: {
-    updateImage(file: string): void {
-      this.$emit('update-image', file);
+    updateVariant(index: number): void {
+      this.$emit('update-variant', index);
     },
     addToCart(): void {
       this.$emit('add-to-cart');
